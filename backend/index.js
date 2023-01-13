@@ -9,6 +9,8 @@ app.use(express.json());
 connectToMongo();
 
 app.use('/user/',require('./routes/userRoute'));
+app.use('/note/',require('./routes/notesRoute'));
+
 
 app.listen(PORT|| process.env.PORT, ()=>{
         console.log(`listening on port ${PORT}`);
