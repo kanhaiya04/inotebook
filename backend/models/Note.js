@@ -25,4 +25,6 @@ const NotesSchema = new Schema({
   },
 });
 
+
+
 module.exports = mongoose.model("notes", NotesSchema);

@@ -76,7 +76,7 @@ router.put("/updatenote/:id", fetchUser, async (req, res) => {
 });
 
 
-//delete a note
+//delete a note 
 router.delete("/deletenote/:id", fetchUser, async (req, res) => {
   try {
     let Note = await note.findById(req.params.id);

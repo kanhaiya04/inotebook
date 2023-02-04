@@ -20,16 +20,17 @@ router.post(
     body("password", "Min. Length should be 5 char").isLength({ min: 5 }),
   ],
   async (req, res) => {
+    let success = false;
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({success, errors: errors.array() });
       }
 
       //find if email already exists
       let User = await user.findOne({ email: req.body.email });
       if (User) {
-        return res.status(400).json({ errors: "Email already exits!" });
+        return res.status(400).json({success, errors: "Email already exits!" });
       }
 
       //adding a new user
@@ -46,10 +47,10 @@ router.post(
         },
       };
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.send({ authToken });
+      res.send({success:true, authToken });
     } catch (error) {
       console.error(error.message);
-      res.status(500).send({ error: "Some internal error occured" });
+      res.status(500).send({success, error: "Some internal error occured" });
     }
   }
 );
@@ -62,9 +63,10 @@ router.post(
     body("password", "Can't be null").exists(),
   ],
   async (req, res) => {
+    var success=false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({success, errors: errors.array() });
     }
     const { email, password } = req.body;
     try {
@@ -72,13 +74,13 @@ router.post(
       if (!User) {
         return res
           .status(400)
-          .json({ errors: "Invalid creds, please try again" });
+          .json({success, errors: "Invalid creds, please try again" });
       }
       const passCompare = await bcrypt.compare(password, User.password);
       if (!passCompare) {
         return res
           .status(400)
-          .json({ errors: "Invalid creds, please try again" });
+          .json({success, errors: "Invalid creds, please try again" });
       }
       const data = {
         user: {
@@ -86,9 +88,9 @@ router.post(
         },
       };
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.send({ authToken });
+      res.send({success:true, authToken });
     } catch (error) {
-      res.status(500).send({ error: "Some internal error occured" });
+      res.status(500).send({success, error: "Some internal error occured" });
     }
   }
 );
