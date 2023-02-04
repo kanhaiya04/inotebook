@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useNavigate } from "react-router-dom"; 
-const Navbar = () => {
+const Navbar = (props) => {
   let navigator=useNavigate();
   let location=useLocation();
   //useEffect(() => {
@@ -11,6 +11,7 @@ const Navbar = () => {
   const handlelogout = () => {
     localStorage.removeItem('token');
     navigator("/login");
+    props.showAlert("Successfully logout","success");
   }
   return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
