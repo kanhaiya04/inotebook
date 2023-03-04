@@ -5,7 +5,7 @@ A WebApp to Keep your all notes at one place
 ![image](https://user-images.githubusercontent.com/93936630/222914336-f67f9bcc-d9fd-441c-8b26-2e8c4498bc8b.png)
 
 
-[![Generic badge](https://img.shields.io/badge/view-demo-blue?style=for-the-badge&label=View%20Demo%20Video)](https://inotebook-9g8c.onrender.com/) 
+[![Generic badge](https://img.shields.io/badge/view-demo-blue?style=for-the-badge&label=View%20Test)](https://inotebook-9g8c.onrender.com/) 
 
 
 ## Instructions
