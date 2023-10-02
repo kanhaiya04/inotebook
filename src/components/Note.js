@@ -14,7 +14,7 @@ const Note = (props) => {
     else{
       navigator("/login");
     }
-  }, );
+  }, []);
   const [note, setnote] = useState({id: "",etitle: "",edescription: "",etags: "default",});
 
   const updateNote = (currentNote) => {
